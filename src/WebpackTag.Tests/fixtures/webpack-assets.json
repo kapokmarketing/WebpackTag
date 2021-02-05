@@ -1,0 +1,56 @@
+{
+  "account": {
+    "js": [
+      "/js/vendors.js",
+      "/js/account.js",
+      "css"
+    ],
+    "css": [
+      "/css/vendors.css",
+      "/css/account.css"
+    ]
+  },
+  "": {
+    "ico": [
+      "/v2/cc.ico",
+      "/v2/cx.ico"
+    ],
+    "png": [
+      "/v2/chosen-sprite.png",
+      "/v2/chosen-sprite@2x.png",
+      "/assets/sell-hero-bg.png"
+    ],
+    "eot": [
+      "/v2/fonts/fontawesome-webfont.eot",
+      "/v2/fonts/fontello.eot"
+    ],
+    "svg": [
+      "/v2/fonts/fontawesome-webfont.svg",
+      "/v2/fonts/fontello.svg",
+      "/assets/motorcycle-placeholder.svg"
+    ],
+    "ttf": [
+      "/v2/fonts/fontawesome-webfont.ttf",
+      "/v2/fonts/fontello.ttf"
+    ],
+    "woff": [
+      "/v2/fonts/fontawesome-webfont.woff",
+      "/v2/fonts/fontello.woff"
+    ],
+    "woff2": "/v2/fonts/fontawesome-webfont.woff2",
+    "swf": [
+      "/v2/player.swf",
+      "/v2/uploader.swf"
+    ],
+    "js": [
+      "/v2/scripts/a.js",
+      "/v2/scripts/b.js",
+      "/v2/scripts/xml.js"
+    ],
+    "css": [
+      "/v2/styles/a.css",
+      "/v2/styles/b.css",
+      "/v2/styles/xml.css"
+    ]
+  }
+}

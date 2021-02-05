@@ -1,34 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <Version>1.0.0</Version>
-    <Authors>Daniel Lo Nigro</Authors>
-    <Description>ASP.NET Core Tag Helper for Webpack assets. See the site at https://d.sb/webpacktag for docs.</Description>
+    <Authors>Kapok Marketing, Inc., Daniel Lo Nigro</Authors>
+    <Description>ASP.NET Core Tag Helper for Webpack assets.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://d.sb/webpacktag</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Daniel15/WebpackTag/</RepositoryUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/kapokmarketing/WebpackTag</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageIcon>webpack-icon.png</PackageIcon>
+    <PackageIcon></PackageIcon>
     <PackageTags>webpack webpack-dev-server module-bundling webpack-assets-manifest assets-webpack-plugin</PackageTags>
+    <Company>Kapok Marketing, Inc.</Company>
+    <PackageId>Kapok.WebpackTag</PackageId>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\webpack-icon.png" />
+    <None Remove="images\webpack-icon.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="images\webpack-icon.png" Pack="true" PackagePath="\" />
+    <Folder Include="images\" />
   </ItemGroup>
 
 </Project>

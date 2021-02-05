@@ -9,6 +9,32 @@ namespace WebpackTag.Tests.AssetParsers
 	public class AssetManifestParserTest
 	{
 		[Fact]
+		public void ParsesWebpackAssets()
+		{
+			var parser = new WebpackAssetsParser(new OptionsWrapper<WebpackTagOptions>(new WebpackTagOptions()));
+			var result = parser.ParseManifest(WebpackAssetsJson);
+
+			var jsPaths = result.GetPaths("js");
+			Assert.Equal(new[]
+			{
+				"/v2/scripts/a.js",
+				"/v2/scripts/b.js",
+				"/v2/scripts/xml.js"
+			}, jsPaths);
+
+			var cssPaths = result.GetPaths("css");
+			Assert.Equal(new[]
+			{
+				"/v2/styles/a.css",
+				"/v2/styles/b.css",
+				"/v2/styles/xml.css"
+			}, cssPaths);
+
+			var fooPaths = result.GetPaths("foo");
+			Assert.Empty(fooPaths);
+		}
+
+		[Fact]
 		public void ParsesAssetManifest()
 		{
 			var parser = new AssetManifestParser(new OptionsWrapper<WebpackTagOptions>(new WebpackTagOptions()));
@@ -64,6 +90,14 @@ namespace WebpackTag.Tests.AssetParsers
 			get
 			{
 				var path = Path.Combine(Directory.GetCurrentDirectory(), "fixtures", "asset-manifest1.json");
+				return File.ReadAllText(path);
+			}
+		}
+		private string WebpackAssetsJson
+		{
+			get
+			{
+				var path = Path.Combine(Directory.GetCurrentDirectory(), "fixtures", "webpack-assets.json");
 				return File.ReadAllText(path);
 			}
 		}

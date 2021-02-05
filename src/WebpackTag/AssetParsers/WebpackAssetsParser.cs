@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Text.Json;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+//using Newtonsoft.Json;
+//using Newtonsoft.Json.Linq;
 
 namespace WebpackTag.AssetParsers
 {
@@ -16,7 +17,7 @@ namespace WebpackTag.AssetParsers
 	{
 		private readonly IOptions<WebpackTagOptions> _options;
 
-		/// <summary>
+		/// <summary> 
 		/// Initializes a new instance of the <see cref="WebpackAssetsParser"/> class.
 		/// </summary>
 		/// <param name="options">The options.</param>
@@ -37,7 +38,7 @@ namespace WebpackTag.AssetParsers
 		/// <returns>Parsed Webpack assets</returns>
 		public WebpackAssets ParseManifest(string json)
 		{
-			var manifest = JsonConvert.DeserializeObject<IDictionary<string, IDictionary<string, dynamic>>>(json);
+			var manifest = JsonSerializer.Deserialize<IDictionary<string, IDictionary<string, object>>>(json);
 
 			var output = new Dictionary<string, WebpackAssets.EntryPoint>();
 			foreach (var (entryPoint, filesByExtension) in manifest)
@@ -45,19 +46,23 @@ namespace WebpackTag.AssetParsers
 				var outputFiles = new Dictionary<string, ImmutableArray<string>>();
 				foreach (var (extension, files) in filesByExtension)
 				{
-					// This can be either an array (for multiple files), or a string (for one file)
-					switch (files)
+					if (files is JsonElement filesElement)
 					{
-						case JArray array:
-							outputFiles[extension] = array.Select(x => FormatPath(x.ToString())).ToImmutableArray();
-							break;
+						// This can be either an array (for multiple files), or a string (for one file)
+						switch (filesElement.ValueKind)
+						{
+							case JsonValueKind.Array:
+								outputFiles[extension] = JsonSerializer.Deserialize<List<string>>(filesElement.GetRawText())
+									.Select(x => FormatPath(x.ToString())).ToImmutableArray();
+								break;
 
-						case string str:
-							outputFiles[extension] = ImmutableArray.Create(FormatPath(str));
-							break;
+							case JsonValueKind.String:
+								outputFiles[extension] = ImmutableArray.Create(FormatPath(filesElement.GetString()));
+								break;
 
-						default:
-							throw new ArgumentException("Unrecognised webpack-assets format");
+							default:
+								throw new ArgumentException("Unrecognised webpack-assets format");
+						}
 					}
 				}
 

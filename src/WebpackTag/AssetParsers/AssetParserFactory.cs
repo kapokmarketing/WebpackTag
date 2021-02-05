@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.StaticFiles;
+//using Microsoft.AspNetCore.SpaServices.StaticFiles;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -101,11 +101,11 @@ namespace WebpackTag.AssetParsers
 				_env.WebRootFileProvider,
 				_env.ContentRootFileProvider,
 			};
-			var spaProvider = _serviceProvider.GetService<ISpaStaticFileProvider>();
-			if (spaProvider?.FileProvider != null)
-			{
-				potentialProviders.Add(spaProvider.FileProvider);
-			}
+			//var spaProvider = _serviceProvider.GetService<ISpaStaticFileProvider>();
+			//if (spaProvider?.FileProvider != null)
+			//{
+			//	potentialProviders.Add(spaProvider.FileProvider);
+			//}
 
 			foreach (var provider in potentialProviders)
 			{
