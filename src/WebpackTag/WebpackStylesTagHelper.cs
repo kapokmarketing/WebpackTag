@@ -26,7 +26,7 @@ namespace WebpackTag
 		public WebpackStylesTagHelper(IAssetParserFactory parser, IHttpContextAccessor httpContext)
 		{
 			_parser = parser;
-			_httpContext = httpContext;
+			_httpContext = httpContext;  
 		}
 
 		/// <summary>
