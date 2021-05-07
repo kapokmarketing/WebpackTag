@@ -20,6 +20,7 @@
     <Company>Kapok Marketing, Inc.</Company>
     <PackageId>Kapok.WebpackTag</PackageId>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Copyright>Modifications © Kapok Marketing, Inc. Original Work Copyright © 2019 Daniel Lo Nigro</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
